@@ -48,6 +48,12 @@
 
   <section class="section">
     <div class="container">
+      <% if session[:new_post_success] %>
+      <div class="notification is-primary">
+        <button class="delete"></button>
+        <%= session[:new_post_success] %>
+      </div>
+      <% end %>
       <%= yield %>
     </div>
   </section>

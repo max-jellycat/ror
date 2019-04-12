@@ -14,3 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+document.querySelectorAll(".notification").forEach(e => {
+  e.firstChild.addEventListener("click", () => e.parentNode.removeChild(e))
+})
