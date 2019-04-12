@@ -1,18 +1,17 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:update, :edit, :show, :destroy]
+
   def index
     @posts = Post.all
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.update(get_post_params)
     redirect_to posts_path
   end
@@ -27,7 +26,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_back(fallback_location: posts_path)
   end
@@ -35,5 +33,9 @@ class PostsController < ApplicationController
   private
   def get_post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
