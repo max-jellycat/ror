@@ -1,0 +1,40 @@
+<div class="categories">
+  <div class="categories-header">
+    <h1 class="title categories-header-title">カテゴリー</h1>
+    <a href="<%= new_category_path %>" class="button is-primary is-outlined categories-header-add">
+      <span class="icon">
+        <i class="fas fa-plus"></i>
+      </span>
+      <span>新たなカテゴリー</span>
+    </a>
+  </div>
+</div>
+<table class="table is-striped is-fullwidth">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>名</th>
+      <th>行動</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |cat| %>
+    <tr>
+      <td><%= cat.id %></td>
+      <td><a href="<%= category_path(cat.id) %>"><%= cat.name %></a></td>
+      <td class="categories-actions">
+        <a href="<%= edit_category_path(cat.id) %>" class="has-text-dark">
+          <span class="icon">
+            <i class="fas fa-edit"></i>
+          </span>
+        </a>
+        <a href="<%= category_path(cat.id) %>" data-method="DELETE" class="has-text-danger">
+          <span class="icon">
+            <i class="fas fa-trash"></i>
+          </span>
+        </a>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

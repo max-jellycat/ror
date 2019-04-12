@@ -1,0 +1,17 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.categories {
+  &-header {
+    padding-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title.title {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

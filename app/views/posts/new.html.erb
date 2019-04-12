@@ -1,0 +1,21 @@
+<h1 class="title">新たな記事</h1>
+
+<%= form_for @post do |f| %>
+<div class="field">
+  <label class="label">タイトル</label>
+  <div class="control">
+    <%= f.text_field :title, class: 'input' %>
+  </div>
+</div>
+<div class="field">
+  <label class="label">コンテンツ</label>
+  <div class="control">
+    <%= f.text_area :content, class: 'textarea', rows: 10 %>
+  </div>
+</div>
+<div class="field">
+  <div class="control">
+    <%= f.submit "公開する", class: 'button is-success is-outlined' %>
+  </div>
+</div>
+<% end %>

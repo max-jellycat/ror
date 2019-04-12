@@ -1,0 +1,37 @@
+<h1 class="title is-size-1">最新の記事</h1>
+<a href="<%= new_post_path %>" class="button is-primary is-outlined">
+  <span class="icon">
+    <i class="fas fa-plus"></i>
+  </span>
+  <span>新たな記事を書く</span>
+</a>
+<div class="posts">
+  <% @posts.each do |post| %>
+  <div class="card">
+    <header class="card-header">
+      <h2 class="card-header-title"><%= post.title %></h2>
+      <a href="<%= edit_post_path(post.id) %>" class="card-header-icon" aria-label="edit">
+        <span class="icon">
+          <i class="fas fa-edit"></i>
+        </span>
+      </a>
+      <a href="<%= post_path(post.id) %>" class="card-header-icon has-text-danger" aria-label="delete"
+        data-method="DELETE">
+        <span class="icon">
+          <i class="fas fa-trash"></i>
+        </span>
+      </a>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <p><%= post.content %></p>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <div class="card-footer-item">
+        <a href="<%= post_path(post.id) %>" class="button is-info is-outlined">続きを読む</a>
+      </div>
+    </footer>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<h1 class="title">新たなカテゴリー</h1>
+
+<%= form_for @category do |f| %>
+<div class="field">
+  <label class="label">名</label>
+  <div class="control">
+    <%= f.text_field :name, class: 'input', placeholder: 'カテゴリー名' %>
+  </div>
+</div>
+<div class="field">
+  <label class="label">リンク</label>
+  <div class="control">
+    <%= f.text_field :slug, class: 'input', placeholder: 'カテゴリリンク' %>
+  </div>
+</div>
+<div class="field">
+  <div class="control">
+    <%= f.submit "提出する", class: 'button is-success is-outlined' %>
+  </div>
+</div>
+<% end %>
