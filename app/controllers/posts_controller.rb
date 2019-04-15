@@ -4,6 +4,12 @@ class PostsController < ApplicationController
   def index
     session[:user] = { username: "マクス", id: 4 }
     @posts = Post.all
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @posts.as_json(only: [:title, :created_at, :id])
+      end
+    end
   end
 
   def show
@@ -13,9 +19,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(get_post_params)
-    session[:edit_post_success] = "記事を編集しました"
-    redirect_to posts_path
+    if @post.update(get_post_params)
+      redirect_to posts_path, info: "記事を編集しました"
+    else
+      render 'edit'
+    end
   end
   
   def new
@@ -23,20 +31,24 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = Post.create(get_post_params)
-    session[:new_post_success] = "記事が作成されました"
-    redirect_to posts_path
+    post = Post.new(get_post_params)
+    if post.valid?
+      post.save
+      redirect_to posts_path, info: "記事が作成されました"
+    else
+      @post = post
+      render 'new'
+    end
   end
 
   def destroy
     @post.destroy
-    session[:delete_post_success] = "記事を削除しました"
-    redirect_back(fallback_location: posts_path)
+    redirect_to posts_path, info: "記事を削除しました"
   end
 
   private
   def get_post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :slug, :content)
   end
 
   def set_post

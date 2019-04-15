@@ -1,7 +1,6 @@
 <div class="categories">
   <div class="categories-header">
     <h1 class="title categories-header-title">カテゴリー</h1>
-    <p>Session: <%= @session %></p>
     <a href="<%= new_category_path %>" class="button is-primary is-outlined categories-header-add">
       <span class="icon">
         <i class="fas fa-plus"></i>
@@ -22,7 +21,7 @@
     <% @categories.each do |cat| %>
     <tr>
       <td><%= cat.id %></td>
-      <td><a href="<%= category_path(cat.id) %>"><%= cat.name %></a></td>
+      <td><a href="<%= category_path(cat.id) %>"><%= cat.title %></a></td>
       <td class="categories-actions">
         <a href="<%= edit_category_path(cat.id) %>" class="has-text-dark">
           <span class="icon">

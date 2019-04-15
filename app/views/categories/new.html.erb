@@ -1,16 +1,19 @@
 <h1 class="title">新たなカテゴリー</h1>
 
+<% if @category.errors.any? %>
+<% @category.errors.full_messages.each do |msg| %>
+<div class="notification is-danger">
+  <button class="delete"></button>
+  <%= msg %>
+</div>
+<% end %>
+<% end %>
+
 <%= form_for @category do |f| %>
 <div class="field">
   <label class="label">名</label>
   <div class="control">
-    <%= f.text_field :name, class: 'input', placeholder: 'カテゴリー名' %>
-  </div>
-</div>
-<div class="field">
-  <label class="label">リンク</label>
-  <div class="control">
-    <%= f.text_field :slug, class: 'input', placeholder: 'カテゴリリンク' %>
+    <%= f.text_field :title, class: 'input', placeholder: 'カテゴリー名' %>
   </div>
 </div>
 <div class="field">

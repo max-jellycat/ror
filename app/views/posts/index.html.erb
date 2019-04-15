@@ -24,7 +24,7 @@
     </header>
     <div class="card-content">
       <div class="content">
-        <p><%= post.content %></p>
+        <p><%= post.content.slice(0..200) %><% if post.content.length >= 200 %>...<% end %></p>
       </div>
     </div>
     <footer class="card-footer">

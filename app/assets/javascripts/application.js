@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require_tree .
 
-document.querySelectorAll(".notification").forEach(e => {
-  e.firstChild.addEventListener("click", () => e.parentNode.removeChild(e))
-})
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".notification .delete").forEach(btn => {
+    btn.addEventListener("click", e => btn.parentNode.remove());
+  });
+});

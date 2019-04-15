@@ -48,10 +48,10 @@
 
   <section class="section">
     <div class="container">
-      <% if session[:new_post_success] %>
-      <div class="notification is-primary">
+      <% flash.each do |name, msg| %>
+      <div class="notification is-<%= name %>">
         <button class="delete"></button>
-        <%= session[:new_post_success] %>
+        <%= msg %>
       </div>
       <% end %>
       <%= yield %>

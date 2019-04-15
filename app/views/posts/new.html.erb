@@ -1,5 +1,14 @@
 <h1 class="title">新たな記事</h1>
 
+<% if @post.errors.any? %>
+<% @post.errors.full_messages.each do |msg| %>
+<div class="notification is-danger">
+  <button class="delete"></button>
+  <%= msg %>
+</div>
+<% end %>
+<% end %>
+
 <%= form_for @post do |f| %>
 <div class="field">
   <label class="label">タイトル</label>

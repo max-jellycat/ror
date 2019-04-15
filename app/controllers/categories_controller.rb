@@ -13,13 +13,16 @@ class CategoriesController < ApplicationController
   end
   
   def update
-    @category.update(get_category_params)
-    redirect_to(categories_path)
+    if @category.update(get_category_params) 
+      redirect_to categories_path, info: "カテゴリーを編集しました"
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     @category.destroy
-    redirect_back(fallback_location: categories_path)
+    redirect_to categories_path, info: "カテゴリーを削除しました"
   end
 
   def new
@@ -27,14 +30,20 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(get_category_params)
-    redirect_to(categories_path)
+    category = Category.new(get_category_params)
+    if category.valid?
+      category.save
+      redirect_to categories_path, info: "カテゴリーが作成されました"
+    else
+      @category = category
+      render 'new'
+    end
   end
 
 
   private
   def get_category_params
-    params.require(:category).permit(:name, :slug)
+    params.require(:category).permit(:title, :slug)
   end
 
   def set_category
